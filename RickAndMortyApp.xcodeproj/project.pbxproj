@@ -16,6 +16,12 @@
 		046AB35129409560008DA7BE /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046AB35029409560008DA7BE /* DetailVC.swift */; };
 		046AB3532940958A008DA7BE /* DetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 046AB3522940958A008DA7BE /* DetailVC.xib */; };
 		046AB356294095A9008DA7BE /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046AB355294095A9008DA7BE /* DetailViewModel.swift */; };
+		046AB35E29409858008DA7BE /* Config+server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046AB35D29409858008DA7BE /* Config+server.swift */; };
+		046AB360294098D7008DA7BE /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046AB35F294098D7008DA7BE /* NetworkProvider.swift */; };
+		046AB3632940990F008DA7BE /* CharacterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046AB3622940990F008DA7BE /* CharacterService.swift */; };
+		046AB366294099E6008DA7BE /* CharacterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046AB365294099E6008DA7BE /* CharacterManager.swift */; };
+		046AB36929409A4F008DA7BE /* CharacterMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046AB36829409A4F008DA7BE /* CharacterMD.swift */; };
+		046AB36B29409C64008DA7BE /* CharacterResultsMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046AB36A29409C64008DA7BE /* CharacterResultsMD.swift */; };
 		1B22B249DFAE65388E42F1C5 /* Pods_RickAndMortyApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D95CB812B90A4EEB2FB2F3 /* Pods_RickAndMortyApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +37,12 @@
 		046AB35029409560008DA7BE /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
 		046AB3522940958A008DA7BE /* DetailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailVC.xib; sourceTree = "<group>"; };
 		046AB355294095A9008DA7BE /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		046AB35D29409858008DA7BE /* Config+server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Config+server.swift"; sourceTree = "<group>"; };
+		046AB35F294098D7008DA7BE /* NetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProvider.swift; sourceTree = "<group>"; };
+		046AB3622940990F008DA7BE /* CharacterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterService.swift; sourceTree = "<group>"; };
+		046AB365294099E6008DA7BE /* CharacterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterManager.swift; sourceTree = "<group>"; };
+		046AB36829409A4F008DA7BE /* CharacterMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterMD.swift; sourceTree = "<group>"; };
+		046AB36A29409C64008DA7BE /* CharacterResultsMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterResultsMD.swift; sourceTree = "<group>"; };
 		06A7FE2A60E3E7EA623C5F30 /* Pods-RickAndMortyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RickAndMortyApp.debug.xcconfig"; path = "Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		69D95CB812B90A4EEB2FB2F3 /* Pods_RickAndMortyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RickAndMortyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5D43BBC89F550B9669CB31E /* Pods-RickAndMortyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RickAndMortyApp.release.xcconfig"; path = "Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -70,6 +82,8 @@
 			isa = PBXGroup;
 			children = (
 				040A759B2940891E00AFA5A3 /* AppDelegate.swift */,
+				046AB359294097BB008DA7BE /* Classes */,
+				046AB35C2940983F008DA7BE /* Config */,
 				046AB346294093FB008DA7BE /* Controllers */,
 				046AB357294095F3008DA7BE /* Images */,
 				040A75A92940892000AFA5A3 /* Info.plist */,
@@ -139,13 +153,72 @@
 			path = LaunchScreen;
 			sourceTree = "<group>";
 		};
+		046AB359294097BB008DA7BE /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				046AB35A294097C6008DA7BE /* Networking */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		046AB35A294097C6008DA7BE /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				046AB36729409A2F008DA7BE /* Models */,
+				046AB364294099CC008DA7BE /* Managers */,
+				046AB35B294097DF008DA7BE /* Provider */,
+				046AB361294098F1008DA7BE /* Services */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		046AB35B294097DF008DA7BE /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				046AB35F294098D7008DA7BE /* NetworkProvider.swift */,
+			);
+			path = Provider;
+			sourceTree = "<group>";
+		};
+		046AB35C2940983F008DA7BE /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				046AB35D29409858008DA7BE /* Config+server.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		046AB361294098F1008DA7BE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				046AB3622940990F008DA7BE /* CharacterService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		046AB364294099CC008DA7BE /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				046AB365294099E6008DA7BE /* CharacterManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		046AB36729409A2F008DA7BE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				046AB36829409A4F008DA7BE /* CharacterMD.swift */,
+				046AB36A29409C64008DA7BE /* CharacterResultsMD.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		43B588460902ABE34471CD46 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				06A7FE2A60E3E7EA623C5F30 /* Pods-RickAndMortyApp.debug.xcconfig */,
 				B5D43BBC89F550B9669CB31E /* Pods-RickAndMortyApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -273,11 +346,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				046AB360294098D7008DA7BE /* NetworkProvider.swift in Sources */,
 				046AB34929409410008DA7BE /* MainVC.swift in Sources */,
 				046AB35129409560008DA7BE /* DetailVC.swift in Sources */,
+				046AB35E29409858008DA7BE /* Config+server.swift in Sources */,
 				040A759C2940891E00AFA5A3 /* AppDelegate.swift in Sources */,
 				046AB356294095A9008DA7BE /* DetailViewModel.swift in Sources */,
+				046AB36929409A4F008DA7BE /* CharacterMD.swift in Sources */,
+				046AB366294099E6008DA7BE /* CharacterManager.swift in Sources */,
 				046AB34E294094DF008DA7BE /* MainViewModel.swift in Sources */,
+				046AB3632940990F008DA7BE /* CharacterService.swift in Sources */,
+				046AB36B29409C64008DA7BE /* CharacterResultsMD.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

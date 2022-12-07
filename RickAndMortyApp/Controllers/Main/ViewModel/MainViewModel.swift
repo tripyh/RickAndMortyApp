@@ -10,3 +10,13 @@ import Foundation
 class MainViewModel {
     
 }
+
+// MARK: - Public
+
+extension MainViewModel {
+    func getCharacters() {
+        CharacterManager.characters(page: 2) { characters, error in
+            
+        }
+    }
+}
