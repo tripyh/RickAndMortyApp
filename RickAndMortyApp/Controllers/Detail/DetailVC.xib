@@ -10,6 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailVC" customModule="RickAndMortyApp" customModuleProvider="target">
             <connections>
+                <outlet property="loaderView" destination="T6N-qp-hsw" id="OL6-CN-EUB"/>
+                <outlet property="tableView" destination="PqR-qT-I5w" id="tfm-P1-Qpe"/>
                 <outlet property="view" destination="iN0-l3-epB" id="eFz-tp-F7c"/>
             </connections>
         </placeholder>
@@ -17,8 +19,34 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="PqR-qT-I5w">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="fgN-xb-DUy"/>
+                        <outlet property="delegate" destination="-1" id="PSh-AM-g3S"/>
+                    </connections>
+                </tableView>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="T6N-qp-hsw">
+                    <rect key="frame" x="197" y="443" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="ObF-wO-zzl"/>
+                        <constraint firstAttribute="height" constant="20" id="Zg3-dh-YGn"/>
+                    </constraints>
+                    <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </activityIndicatorView>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="PqR-qT-I5w" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ImR-G8-RMz"/>
+                <constraint firstItem="PqR-qT-I5w" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Spx-JV-qt9"/>
+                <constraint firstAttribute="trailing" secondItem="PqR-qT-I5w" secondAttribute="trailing" id="X0i-0N-ObN"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="PqR-qT-I5w" secondAttribute="bottom" id="dQJ-83-Cdg"/>
+                <constraint firstItem="T6N-qp-hsw" firstAttribute="centerY" secondItem="PqR-qT-I5w" secondAttribute="centerY" id="fDR-Yr-C3e"/>
+                <constraint firstItem="T6N-qp-hsw" firstAttribute="centerX" secondItem="PqR-qT-I5w" secondAttribute="centerX" id="qTV-jL-7Y6"/>
+            </constraints>
             <point key="canvasLocation" x="139" y="81"/>
         </view>
     </objects>

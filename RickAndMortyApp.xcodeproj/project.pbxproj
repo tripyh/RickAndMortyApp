@@ -29,6 +29,11 @@
 		046AB37A2940A96C008DA7BE /* UITableView+register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046AB3792940A96C008DA7BE /* UITableView+register.swift */; };
 		046AB37C2940A98C008DA7BE /* CharacterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 046AB37B2940A98C008DA7BE /* CharacterCell.xib */; };
 		046AB37E2940B272008DA7BE /* LocationMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046AB37D2940B272008DA7BE /* LocationMD.swift */; };
+		046AB3802940C7C1008DA7BE /* EpisodeMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046AB37F2940C7C1008DA7BE /* EpisodeMD.swift */; };
+		046AB3822940C8E5008DA7BE /* EpisodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046AB3812940C8E5008DA7BE /* EpisodeService.swift */; };
+		046AB3842940CAC2008DA7BE /* EpisodeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046AB3832940CAC2008DA7BE /* EpisodeManager.swift */; };
+		046AB3872940D1A3008DA7BE /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046AB3862940D1A3008DA7BE /* EpisodeCell.swift */; };
+		046AB3892940D1B9008DA7BE /* EpisodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 046AB3882940D1B9008DA7BE /* EpisodeCell.xib */; };
 		1B22B249DFAE65388E42F1C5 /* Pods_RickAndMortyApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D95CB812B90A4EEB2FB2F3 /* Pods_RickAndMortyApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +62,11 @@
 		046AB3792940A96C008DA7BE /* UITableView+register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+register.swift"; sourceTree = "<group>"; };
 		046AB37B2940A98C008DA7BE /* CharacterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterCell.xib; sourceTree = "<group>"; };
 		046AB37D2940B272008DA7BE /* LocationMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMD.swift; sourceTree = "<group>"; };
+		046AB37F2940C7C1008DA7BE /* EpisodeMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeMD.swift; sourceTree = "<group>"; };
+		046AB3812940C8E5008DA7BE /* EpisodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeService.swift; sourceTree = "<group>"; };
+		046AB3832940CAC2008DA7BE /* EpisodeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeManager.swift; sourceTree = "<group>"; };
+		046AB3862940D1A3008DA7BE /* EpisodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
+		046AB3882940D1B9008DA7BE /* EpisodeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EpisodeCell.xib; sourceTree = "<group>"; };
 		06A7FE2A60E3E7EA623C5F30 /* Pods-RickAndMortyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RickAndMortyApp.debug.xcconfig"; path = "Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		69D95CB812B90A4EEB2FB2F3 /* Pods_RickAndMortyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RickAndMortyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5D43BBC89F550B9669CB31E /* Pods-RickAndMortyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RickAndMortyApp.release.xcconfig"; path = "Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -137,6 +147,7 @@
 		046AB34F29409551008DA7BE /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				046AB3852940D182008DA7BE /* Cell */,
 				046AB35429409598008DA7BE /* ViewModel */,
 				046AB35029409560008DA7BE /* DetailVC.swift */,
 				046AB3522940958A008DA7BE /* DetailVC.xib */,
@@ -210,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				046AB3622940990F008DA7BE /* CharacterService.swift */,
+				046AB3812940C8E5008DA7BE /* EpisodeService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -218,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				046AB365294099E6008DA7BE /* CharacterManager.swift */,
+				046AB3832940CAC2008DA7BE /* EpisodeManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -228,6 +241,7 @@
 				046AB36829409A4F008DA7BE /* CharacterMD.swift */,
 				046AB36A29409C64008DA7BE /* CharacterResultsMD.swift */,
 				046AB37D2940B272008DA7BE /* LocationMD.swift */,
+				046AB37F2940C7C1008DA7BE /* EpisodeMD.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -272,6 +286,15 @@
 				046AB3792940A96C008DA7BE /* UITableView+register.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		046AB3852940D182008DA7BE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				046AB3862940D1A3008DA7BE /* EpisodeCell.swift */,
+				046AB3882940D1B9008DA7BE /* EpisodeCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		43B588460902ABE34471CD46 /* Pods */ = {
@@ -354,6 +377,7 @@
 				040A75A82940892000AFA5A3 /* LaunchScreen.storyboard in Resources */,
 				046AB3532940958A008DA7BE /* DetailVC.xib in Resources */,
 				046AB37C2940A98C008DA7BE /* CharacterCell.xib in Resources */,
+				046AB3892940D1B9008DA7BE /* EpisodeCell.xib in Resources */,
 				046AB34B2940943D008DA7BE /* MainVC.xib in Resources */,
 				040A75A52940892000AFA5A3 /* Assets.xcassets in Resources */,
 			);
@@ -410,10 +434,13 @@
 			files = (
 				046AB360294098D7008DA7BE /* NetworkProvider.swift in Sources */,
 				046AB34929409410008DA7BE /* MainVC.swift in Sources */,
+				046AB3802940C7C1008DA7BE /* EpisodeMD.swift in Sources */,
+				046AB3822940C8E5008DA7BE /* EpisodeService.swift in Sources */,
 				046AB35129409560008DA7BE /* DetailVC.swift in Sources */,
 				046AB36E2940A825008DA7BE /* CharacterCell.swift in Sources */,
 				046AB35E29409858008DA7BE /* Config+server.swift in Sources */,
 				046AB3722940A8D1008DA7BE /* BaseTableViewCell.swift in Sources */,
+				046AB3872940D1A3008DA7BE /* EpisodeCell.swift in Sources */,
 				046AB37A2940A96C008DA7BE /* UITableView+register.swift in Sources */,
 				040A759C2940891E00AFA5A3 /* AppDelegate.swift in Sources */,
 				046AB356294095A9008DA7BE /* DetailViewModel.swift in Sources */,
@@ -421,6 +448,7 @@
 				046AB366294099E6008DA7BE /* CharacterManager.swift in Sources */,
 				046AB37E2940B272008DA7BE /* LocationMD.swift in Sources */,
 				046AB3752940A90E008DA7BE /* NibLoadableViewProtocol.swift in Sources */,
+				046AB3842940CAC2008DA7BE /* EpisodeManager.swift in Sources */,
 				046AB3772940A927008DA7BE /* ReusableViewProtocol.swift in Sources */,
 				046AB34E294094DF008DA7BE /* MainViewModel.swift in Sources */,
 				046AB3632940990F008DA7BE /* CharacterService.swift in Sources */,

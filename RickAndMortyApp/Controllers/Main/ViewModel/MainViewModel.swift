@@ -74,14 +74,14 @@ private extension MainViewModel {
     func getCharacters(_ page: Int) {
         _loading.value = page == 1
         
-        CharacterManager.characters(page: page) { [weak self] characters, errorMesage in
+        CharacterManager.characters(page: page) { [weak self] characters, errorMessage in
             guard let strongSelf = self else {
                 return
             }
             
             strongSelf._loading.value = false
             
-            if let errorActual = errorMesage {
+            if let errorActual = errorMessage {
                 strongSelf.showErrorObserver.send(value: errorActual)
             } else if let charactersActual = characters {
                 strongSelf.finalPage = charactersActual.count < strongSelf.countOnPage || charactersActual.count == 0

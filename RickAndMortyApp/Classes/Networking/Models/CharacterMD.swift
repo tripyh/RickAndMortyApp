@@ -13,6 +13,7 @@ struct CharacterMD {
     let status: String
     let image: String
     let location: LocationMD
+    let episode: [String]
 }
 
 // MARK: - Decodable
@@ -24,6 +25,7 @@ extension CharacterMD: Decodable {
         case status
         case image
         case location
+        case episode
     }
     
     init(from decoder: Decoder) throws {
@@ -33,6 +35,12 @@ extension CharacterMD: Decodable {
         let status = try container.decode(String.self, forKey: .status)
         let image = try container.decode(String.self, forKey: .image)
         let location = try container.decode(LocationMD.self, forKey: .location)
-        self.init(id: id, name: name, status: status, image: image, location: location)
+        let episode = try container.decode([String].self, forKey: .episode)
+        self.init(id: id,
+                  name: name,
+                  status: status,
+                  image: image,
+                  location: location,
+                  episode: episode)
     }
 }

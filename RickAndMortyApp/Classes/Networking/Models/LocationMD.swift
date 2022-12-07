@@ -27,4 +27,3 @@ extension LocationMD: Decodable {
         self.init(name: name, url: url)
     }
 }
-

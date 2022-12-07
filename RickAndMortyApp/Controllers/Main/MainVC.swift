@@ -63,7 +63,6 @@ private extension MainVC {
     }
 }
 
-
 // MARK: - UITableViewDataSource
 
 extension MainVC: UITableViewDataSource {
@@ -84,6 +83,12 @@ extension MainVC: UITableViewDataSource {
 extension MainVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard let character = viewModel.character(at: indexPath.row) else {
+            return
+        }
+        
+        pushToDetails(character)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -95,6 +100,16 @@ extension MainVC: UITableViewDelegate {
     }
 }
 
+// MARK: - Navigation
+
+private extension MainVC {
+    func pushToDetails(_ character: CharacterMD) {
+        let detailViewModel = DetailViewModel(character: character)
+        let detailController = DetailVC(viewModel: detailViewModel)
+        navigationController?.pushViewController(detailController, animated: true)
+    }
+}
+
 // MARK: - Private
 
 private extension MainVC {
@@ -103,4 +118,3 @@ private extension MainVC {
         SVProgressHUD.dismiss(withDelay: 2)
     }
 }
-
