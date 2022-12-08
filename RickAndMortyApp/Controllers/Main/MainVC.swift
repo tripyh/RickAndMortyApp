@@ -50,6 +50,11 @@ class MainVC: UIViewController {
 private extension MainVC {
     func configure() {
         tableView.register(CharacterCell.self)
+        
+        let rightButton = FactoryButtons.createButton(title: "Filter",
+                                                      target: self,
+                                                      selector: #selector(filterButtonPressed))
+        navigationItem.rightBarButtonItem = rightButton
     }
 }
 
@@ -60,6 +65,14 @@ private extension MainVC {
         tableView.reactive.reloadData <~ viewModel.reload
         loaderView.reactive.isAnimating <~ viewModel.loading
         showError <~ viewModel.showError
+    }
+}
+
+// MARK: - Actions
+
+private extension MainVC {
+    @objc func filterButtonPressed() {
+        pushToFilter()
     }
 }
 
@@ -107,6 +120,16 @@ private extension MainVC {
         let detailViewModel = DetailViewModel(character: character)
         let detailController = DetailVC(viewModel: detailViewModel)
         navigationController?.pushViewController(detailController, animated: true)
+    }
+    
+    func pushToFilter() {
+        let filterViewModel = FilterViewModel(filterType: viewModel.filterType)
+        let filterController = FilterVC(viewModel: filterViewModel)
+        filterController.acceptedFilterType = { [weak self] filterType in
+            self?.viewModel.updateFilterType(filterType)
+        }
+        
+        navigationController?.pushViewController(filterController, animated: true)
     }
 }
 

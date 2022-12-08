@@ -16,6 +16,10 @@ class MainViewModel {
     let showError: Signal<String, Never>
     var loading: Property<Bool> { return Property(_loading) }
     
+    var filterType: FilterType? {
+        return currentFilter
+    }
+    
     // MARK: - Private properties
     
     private let reloadObserver: Signal<(), Never>.Observer
@@ -26,6 +30,7 @@ class MainViewModel {
     private let countOnPage = 20
     private var finalPage = false
     private var page = 1
+    private var currentFilter: FilterType?
     
     // MARK: - Lifecycle
     
@@ -55,7 +60,7 @@ extension MainViewModel {
 
 extension MainViewModel {
     func getCharacters() {
-        getCharacters(page)
+        getCharacters(page, filterType: currentFilter)
     }
     
     func willDisplay(_ index: Int) {
@@ -63,18 +68,34 @@ extension MainViewModel {
         
         if loadCountNumber == index, !finalPage {
             page += 1
-            getCharacters(page)
+            getCharacters(page, filterType: currentFilter)
         }
+    }
+    
+    func updateFilterType(_ filterType: FilterType?) {
+        currentFilter = filterType
+        characters = [CharacterMD]()
+        page = 0
+        finalPage = false
+        reloadObserver.send(value: ())        
+        getCharacters(page, filterType: currentFilter)
     }
 }
 
 // MARK: - Private
 
 private extension MainViewModel {
-    func getCharacters(_ page: Int) {
+    func getCharacters(_ page: Int, filterType: FilterType?) {
         _loading.value = page == 1
         
-        CharacterManager.characters(page: page) { [weak self] characters, errorMessage in
+        var params = [String: Any]()
+        params["page"] = page
+        
+        if let filterTypeActual = filterType {
+            params["status"] = filterTypeActual.rawValue
+        }
+        
+        CharacterManager.characters(params: params) { [weak self] characters, errorMessage in
             guard let strongSelf = self else {
                 return
             }

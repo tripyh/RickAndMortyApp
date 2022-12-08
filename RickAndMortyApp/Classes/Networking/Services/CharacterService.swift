@@ -8,7 +8,7 @@
 import Moya
 
 enum CharacterService: NetworkTarget {
-    case characters(_ page: Int)
+    case characters(_ params: [String: Any])
     
     var path: String {
         return "character"
@@ -20,8 +20,8 @@ enum CharacterService: NetworkTarget {
     
     var task: Task {
         switch self {
-        case let .characters(page):
-            return .requestParameters(parameters: ["page": page], encoding: URLEncoding.queryString)
+        case let .characters(params):
+            return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
         }
     }
 }
