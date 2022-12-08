@@ -8,6 +8,11 @@
 import ReactiveCocoa
 import ReactiveSwift
 
+struct EpisodeSectionCellModel {
+    let season: String
+    var cellModels: [EpisodeCellModel]
+}
+
 struct EpisodeCellModel {
     let name: String
     let date: String
@@ -33,7 +38,7 @@ class DetailViewModel {
     private let _loading: MutableProperty<Bool> = MutableProperty(false)
     
     private let character: CharacterMD
-    private var cellModels = [EpisodeCellModel]()
+    private var sectionCellModels = [EpisodeSectionCellModel]()
     private var currentEpisode = 0
     private let dateFormatter = DateFormatter()
     
@@ -49,16 +54,36 @@ class DetailViewModel {
 // MARK: - DataSource
 
 extension DetailViewModel {
-    var numberOfRows: Int {
-        return cellModels.count
+    func numberOfRows(at section: Int) -> Int {
+        guard 0..<sectionCellModels.count ~= section else {
+            return 0
+        }
+        
+        return sectionCellModels[section].cellModels.count
     }
     
-    func cellModel(at index: Int) -> EpisodeCellModel? {
-        guard 0..<cellModels.count ~= index else {
+    var numberOfSections: Int {
+        return sectionCellModels.count
+    }
+    
+    func sectionCellModel(at section: Int) -> EpisodeSectionCellModel? {
+        guard 0..<sectionCellModels.count ~= section else {
             return nil
         }
         
-        return cellModels[index]
+        return sectionCellModels[section]
+    }
+    
+    func cellModel(at section: Int, row: Int) -> EpisodeCellModel? {
+        guard 0..<sectionCellModels.count ~= section else {
+            return nil
+        }
+        
+        guard 0..<sectionCellModels[section].cellModels.count ~= row else {
+            return nil
+        }
+        
+        return sectionCellModels[section].cellModels[row]
     }
 }
 
@@ -95,31 +120,73 @@ private extension DetailViewModel {
                 strongSelf._loading.value = false
                 strongSelf.showErrorObserver.send(value: errorActual)
             } else if let episodeActual = episode {
-                strongSelf.dateFormatter.dateFormat = "MMMM d, yyyy"
-                
-                let dateString: String
-                
-                if let date = strongSelf.dateFormatter.date(from: episodeActual.airDate) {
-                    strongSelf.dateFormatter.dateFormat = "d MMMM yyyy"
-                    dateString = strongSelf.dateFormatter.string(from: date)
-                } else {
-                    dateString = ""
-                }
-                
-                let cellModel = EpisodeCellModel(name: episodeActual.name,
-                                                 date: dateString,
-                                                 season: episodeActual.episode)
-                
-                strongSelf.cellModels.append(cellModel)
-                strongSelf.reloadObserver.send(value: ())
-                
-                if strongSelf.character.episode.count - 1 != strongSelf.currentEpisode {
-                    strongSelf.currentEpisode += 1
-                    strongSelf.getNextEpisode()
-                } else {
-                    strongSelf._loading.value = false
-                }
+                strongSelf.addNewEpisode(episodeActual)
             }
         }
+    }
+    
+    func addNewEpisode(_ episode: EpisodeMD) {
+        let cellModel = createEpisodeCellModel(episode)
+        
+        if sectionCellModels.isEmpty {
+            addSectionCellModel(cellModel)
+        } else {
+            //
+            // it works until episode 99
+            //
+            
+            let newSectionName = cellModel.season.prefix(3)
+            var isExistSection = false
+            
+            for i in 0..<sectionCellModels.count {
+                var sectionCell = sectionCellModels[i]
+                let sectionName = sectionCell.season.prefix(3)
+                
+                if sectionName == newSectionName {
+                    isExistSection = true
+                    var cellModels = sectionCell.cellModels
+                    cellModels.append(cellModel)
+                    sectionCell.cellModels = cellModels
+                    sectionCellModels[i] = sectionCell
+                }
+            }
+            
+            if !isExistSection {
+                addSectionCellModel(cellModel)
+            }
+        }
+        
+        reloadObserver.send(value: ())
+        
+        if character.episode.count - 1 != currentEpisode {
+            currentEpisode += 1
+            getNextEpisode()
+        } else {
+            _loading.value = false
+        }
+    }
+    
+    func addSectionCellModel(_ cellModel: EpisodeCellModel) {
+        let sectionCellModel = EpisodeSectionCellModel(season: cellModel.season,
+                                                       cellModels: [cellModel])
+        sectionCellModels.append(sectionCellModel)
+    }
+    
+    func createEpisodeCellModel(_ episode: EpisodeMD) -> EpisodeCellModel {
+        dateFormatter.dateFormat = "MMMM d, yyyy"
+        
+        let dateString: String
+        
+        if let date = dateFormatter.date(from: episode.airDate) {
+            dateFormatter.dateFormat = "d MMMM yyyy"
+            dateString = dateFormatter.string(from: date)
+        } else {
+            dateString = ""
+        }
+        
+        let cellModel = EpisodeCellModel(name: episode.name,
+                                         date: dateString,
+                                         season: episode.episode)
+        return cellModel
     }
 }

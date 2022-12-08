@@ -68,13 +68,22 @@ private extension DetailVC {
 // MARK: - UITableViewDataSource
 
 extension DetailVC: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.numberOfSections
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRows
+        return viewModel.numberOfRows(at: section)
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let sectionCellModel = viewModel.sectionCellModel(at: section)
+        return sectionCellModel?.season
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: EpisodeCell = tableView.dequeueReusableCell(for: indexPath)
-        let cellModel = viewModel.cellModel(at: indexPath.row)
+        let cellModel = viewModel.cellModel(at: indexPath.section, row: indexPath.row)
         cell.configure(cellModel)
         return cell
     }
